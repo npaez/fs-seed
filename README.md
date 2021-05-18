@@ -1,3 +1,3 @@
-# restfull-api-server-seed
+# fs-seed
 
 nodejs/express/mongodb seed

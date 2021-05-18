@@ -1,0 +1,26 @@
+{
+  "name": "fs-seed",
+  "version": "0.0.1",
+  "description": "node/mongo server api",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/npaez/fs-seed.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongodb",
+    "server",
+    "api"
+  ],
+  "author": "Nestor Paez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/npaez/fs-seed/issues"
+  },
+  "homepage": "https://github.com/npaez/fs-seed#readme"
+}
