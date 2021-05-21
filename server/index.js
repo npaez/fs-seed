@@ -1,8 +1,8 @@
 'use strict';
 
-const database = require('./config/mongodb');
-const server = require('./config/server')();
-const errHandler = require('./config/errorHandler');
+const database = require('./loaders/mongodb');
+const server = require('./loaders/server')();
+const errHandler = require('./loaders/errorHandler');
 
 (async () => {
   await database.start();
