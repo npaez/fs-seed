@@ -9,7 +9,9 @@ module.exports = {
     }
 
     // error log management
-    const errorLogStream = fs.createWriteStream(`${ __dirname }/../logs/error.log`, { flags: 'a' });
+    const errorLogStream = fs.createWriteStream(`${ __dirname }/../logs/error.log`, {
+      flags: 'a'
+    });
  
     // error handling, avoiding crash
     process.on('uncaughtException', (err, req, res, next) => {

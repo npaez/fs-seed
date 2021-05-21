@@ -1,7 +1,7 @@
 {
   "name": "fs-seed",
   "version": "0.0.1",
-  "description": "node/mongo server api",
+  "description": "me*n seed for small/medium size projects",
   "main": "server.js",
   "scripts": {
     "start": "node index.js",

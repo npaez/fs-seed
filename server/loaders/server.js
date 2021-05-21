@@ -74,12 +74,11 @@ module.exports = () => {
     });
   };
 
-  const start = () => {
+  const start = async () => {
     server.set('port', process.env.PORT); // firing up express
 
-    http.createServer(server).listen(process.env.PORT, () => {
-      return console.log(`[+] ${ process.env.NAME } server listening on port ${ process.env.PORT }`);
-    });
+    await http.createServer(server).listen(process.env.PORT);
+    return console.log(`[+] ${ process.env.NAME } server listening on port ${ process.env.PORT }`);
   };
 
   return {
