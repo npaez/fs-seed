@@ -14,10 +14,11 @@ const routes = require('../routes/index');
 // env config
 dotenv.config();
 
-module.exports = () => {
-  const server = express();
+module.exports = {
+  create() {
+    // create express app
+    const server = express();
 
-  const create = () => {
     server.set('json spaces', 2);
     server.use(logger('dev'));
     // helment security lib
@@ -72,17 +73,14 @@ module.exports = () => {
     server.use((req, res, next) => {
       return res.failure(-1, 'Not Found', 404);
     });
-  };
 
-  const start = async () => {
+    return server;
+  },
+
+  async start(server) {
     server.set('port', process.env.PORT); // firing up express
 
     await http.createServer(server).listen(process.env.PORT);
     return console.log(`[+] ${ process.env.NAME } server listening on port ${ process.env.PORT }`);
-  };
-
-  return {
-    create,
-    start
-  };
+  }
 }
