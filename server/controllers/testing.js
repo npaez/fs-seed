@@ -2,4 +2,4 @@
  * testing route
  * @route GET /
  */
-exports.getTesting = (req, res) => res.send('fs-seed');
+exports.home = (req, res) => res.send('fs-seed');
