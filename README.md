@@ -1,3 +1,3 @@
 # fs-seed
 
-nodejs/express/mongodb seed
+me*n seed for small/medium size projects
