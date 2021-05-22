@@ -1,7 +1,6 @@
 /* jshint esversion: 6 */
 
 // modules
-const bodyParser = require('body-parser');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
@@ -28,8 +27,8 @@ module.exports = {
     // compress middleware to gzip content
     server.use(compression());
     // server.use(favicon(`${ __dirname }/public/img/favicon.png`));
-    server.use(bodyParser.json());
-    server.use(bodyParser.urlencoded({ extended: false }));
+    server.use(express.urlencoded({ extended: false }));
+    server.use(express.json());
     // server.use(cookieParser(process.env.MONGO_NAME));
 
     // response definition
