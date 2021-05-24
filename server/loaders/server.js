@@ -45,10 +45,6 @@ const errorHandler = (err, req, res, next) => {
   });
 }
 
-const error404Handler = (req, res, next) => {
-  return res.failure(-1, 'Not Found', 404)
-};
-
 module.exports = {
   create() {
     // create express app
@@ -75,7 +71,7 @@ module.exports = {
     // error handler
     server.use(errorHandler);
     // catch 404 and forward to error handler
-    server.use(error404Handler);
+    server.use((req, res) => res.failure(-1, 'not found', 404));
 
     return server;
   },

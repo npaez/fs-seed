@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 module.exports = {
-  start() {
+  create() {
     // create logs folder
     if (!fs.existsSync('./logs')) {
       console.log('[+] logs folder created');

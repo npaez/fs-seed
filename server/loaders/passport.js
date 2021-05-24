@@ -6,7 +6,7 @@ const JwtStrategy = require('passport-jwt').Strategy;
 const users = require('../services/user.services');
 
 module.exports = {
-  start() {
+  create() {
     passport.use(new JwtStrategy({
       jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
       secretOrKey: process.env.JWT_SECRET
@@ -22,5 +22,9 @@ module.exports = {
     passport.deserializeUser((obj, done) => done(null, obj));
 
     return true;
+  },
+
+  start(server) {
+    server.use(passport.initialize());
   }
 }

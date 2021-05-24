@@ -8,16 +8,17 @@ const {
 } = require('./loaders');
 
 (async () => {
-  // init db
-  await database.start();
-
   // create/init server
   const app = server.create();
   await server.start(app);
 
-  // init error handler
-  errorHandler.start();
+  // init db
+  await database.start();
 
   // init passport strategies
-  passport.start();
+  passport.create();
+  passport.start(app);
+
+  // init error handler
+  errorHandler.create();
 })();
