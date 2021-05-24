@@ -2,5 +2,6 @@
 
 module.exports = (application) => {
   // core routes
-  require('./testing')(application)
+  require('./users.routes')(application)
+  require('./testing.routes')(application)
 }

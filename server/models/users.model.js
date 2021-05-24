@@ -45,8 +45,8 @@ const userSchema = new mongoose.Schema({
   // role: String,
 
   // personal info
-  name: String,
-  lastname: String
+  firstName: String,
+  lastName: String
 }, {
   collection: 'users'
 });

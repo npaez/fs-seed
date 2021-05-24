@@ -3,18 +3,24 @@
 const mongoose = require('mongoose');
 
 // require models
-// require('../models/index')();
+const importModels = require('../models/index');
 
-mongoose.Promise = Promise;
+// mongoose.Promise = Promise;
+// mongoose.set('useNewUrlParser', true);
+// mongoose.set('useFindAndModify', false);
+// mongoose.set('useCreateIndex', true);
 
 // connect database
 module.exports = {
   async start() {
+    importModels();
+
     try {
       await mongoose.connect(process.env.MONGO_URI, {
         useNewUrlParser: true,
         useFindAndModify: false,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useCreateIndex: true
       });
     } catch (ex) {
       console.log(`[-] mongodb exception ${ ex.message }`);

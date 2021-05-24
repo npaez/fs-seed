@@ -2,5 +2,5 @@
 
 module.exports = () => {
   // core models
-  // require('./users');
+  require('./users.model');
 };
