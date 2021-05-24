@@ -1,4 +1,4 @@
-const users = require('../services/user.services');
+const { users } = require('../services');
 
 /**
  * query users
