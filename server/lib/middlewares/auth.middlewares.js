@@ -27,7 +27,7 @@ module.exports = {
       if (!!err) {
         return res.failure(-1, err, 500)
       } else if (!user) {
-        return res.failure(-1, info.message, 500);
+        return res.failure(-1, info.error, 500);
       }
   
       req.logIn(user, function (err) {
