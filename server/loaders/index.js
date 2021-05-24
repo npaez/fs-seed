@@ -2,9 +2,11 @@
 const server = require('./server');
 const database = require('./mongodb');
 const errorHandler = require('./errorHandler');
+const passport = require('./passport');
 
 module.exports = {
   server,
   database,
-  errorHandler
+  errorHandler,
+  passport
 }

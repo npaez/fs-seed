@@ -3,7 +3,8 @@
 const {
   database,
   server,
-  errorHandler
+  errorHandler,
+  passport
 } = require('./loaders');
 
 (async () => {
@@ -16,4 +17,7 @@ const {
 
   // init error handler
   errorHandler.start();
+
+  // init passport strategies
+  passport.start();
 })();

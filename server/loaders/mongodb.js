@@ -2,13 +2,11 @@
 // modules
 const mongoose = require('mongoose');
 // models
-const importModels = require('../models/index');
+require('../models/index')();
 
 module.exports = {
   // connect database
   async start() {
-    importModels();
-
     try {
       await mongoose.connect(process.env.MONGO_URI, {
         useNewUrlParser: true,
