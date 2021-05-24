@@ -1,6 +1,7 @@
 /* jshint esversion: 6 */
 
-module.exports = () => {
-  // core models
-  require('./users.model');
+module.exports = {
+  create() {
+    require('./users.model');
+  }
 };

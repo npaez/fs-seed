@@ -3,6 +3,7 @@
 // modules
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
+const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
   // system usage
@@ -51,6 +52,19 @@ const userSchema = new mongoose.Schema({
   collection: 'users'
 });
 
+// plugins
+userSchema.plugin(uniqueValidator);
+
+// methods
+userSchema.methods.comparePassword = function (password) {
+  return bcrypt.compareSync(password, this.password);
+};
+
+// post processing
+userSchema.post('save', schemaValidation);
+userSchema.post('updateOne', schemaValidation);
+
+// aux functions
 function schemaValidation(error, doc, next) {
   switch (error.name) {
     case 'ValidationError': {
@@ -68,9 +82,5 @@ function schemaValidation(error, doc, next) {
     }
   }
 }
-
-userSchema.plugin(uniqueValidator);
-userSchema.post('save', schemaValidation);
-userSchema.post('updateOne', schemaValidation);
 
 module.exports = mongoose.model('users', userSchema);
