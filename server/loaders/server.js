@@ -13,6 +13,42 @@ const routes = require('../routes/index');
 // env config
 dotenv.config();
 
+const responseDefinition = (req, res, next) => {
+  res.success = (data = null, status = 200) => {
+    return res.status(status).send({
+      success: true,
+      error: null,
+      data
+    });
+  }
+
+  res.failure = (code = -1, message = 'Unknown Error', status = 500) => {
+    return res.status(status).send({
+      success: false,
+      error: {
+        code,
+        message
+      },
+      data: null,
+    });
+  };
+
+  return next();
+}
+
+const errorHandler = (err, req, res, next) => {
+  // development error handler print stacktrace
+  // production error handler no stacktraces leaked to user
+  return res.status(err.status || 500).send({
+    error: (process.env.NODE_ENV === 'development') ? err : {},
+    message: err.message || 'Unknown Error'
+  });
+}
+
+const error404Handler = (req, res, next) => {
+  return res.failure(-1, 'Not Found', 404)
+};
+
 module.exports = {
   create() {
     // create express app
@@ -31,47 +67,15 @@ module.exports = {
     server.use(express.json());
     // server.use(cookieParser(process.env.MONGO_NAME));
 
-    // response definition
-    server.use((req, res, next) => {
-      res.success = (data = null, status = 200) => {
-        return res.status(status).send({
-          success: true,
-          error: null,
-          data
-        });
-      };
-    
-      res.failure = (code = -1, message = 'Unknown Error', status = 500) => {
-        return res.status(status).send({
-          success: false,
-          error: {
-            code,
-            message
-          },
-          data: null,
-        });
-      };
-
-      return next();
-    });
-
     // routes
     routes(server);
 
+    // response definition
+    server.use(responseDefinition);
     // error handler
-    server.use((err, req, res, next) => {
-      // development error handler print stacktrace
-      // production error handler no stacktraces leaked to user
-      return res.status(err.status || 500).send({
-        error: (process.env.NODE_ENV === 'development') ? err : {},
-        message: err.message || 'Unknown Error'
-      });
-    });
-
+    server.use(errorHandler);
     // catch 404 and forward to error handler
-    server.use((req, res, next) => {
-      return res.failure(-1, 'Not Found', 404);
-    });
+    server.use(error404Handler);
 
     return server;
   },

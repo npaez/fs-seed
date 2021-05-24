@@ -1,8 +1,10 @@
 'use strict';
 
-const database = require('./loaders/mongodb');
-const server = require('./loaders/server');
-const errHandler = require('./loaders/errorHandler');
+const {
+  database,
+  server,
+  errorHandler
+} = require('./loaders');
 
 (async () => {
   // init db
@@ -13,5 +15,5 @@ const errHandler = require('./loaders/errorHandler');
   await server.start(app);
 
   // init error handler
-  errHandler.start();
+  errorHandler.start();
 })();
