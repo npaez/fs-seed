@@ -1,17 +1,11 @@
 /* jshint esversion: 6 */
 // modules
 const mongoose = require('mongoose');
-
-// require models
+// models
 const importModels = require('../models/index');
 
-// mongoose.Promise = Promise;
-// mongoose.set('useNewUrlParser', true);
-// mongoose.set('useFindAndModify', false);
-// mongoose.set('useCreateIndex', true);
-
-// connect database
 module.exports = {
+  // connect database
   async start() {
     importModels();
 
