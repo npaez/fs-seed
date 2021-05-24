@@ -3,15 +3,23 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 // models
-const users = mongoose.model('users');
+const users = require('../models/users.model')// mongoose.model('users');
 
 module.exports = {
   /**
    * @param { String } id
    * @returns user object
    */
-  async getById(id) {
-    return await users.findById(id).lean().exec();
+  async getById(id, lean) {
+    return await users.findById(id).lean(lean).exec();
+  },
+
+  /**
+   * @param { Object } query 
+   * @returns user object
+   */
+  async getByField(query, lean) {
+    return await users.findOne(query).lean(lean).exec();
   },
 
   /**
