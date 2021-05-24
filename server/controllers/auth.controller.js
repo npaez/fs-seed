@@ -8,6 +8,7 @@ module.exports = {
     try {
       token = jwt.create(req.user);
     } catch (ex) {
+      console.log('[POST /auth/login localAuth() ex] ', ex);
       return res.failure(-1, ex.message, 500);
     }
 
