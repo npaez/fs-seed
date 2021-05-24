@@ -10,6 +10,8 @@ const http = require('http');
 const logger = require('morgan');
 // routes
 const routes = require('../routes/index');
+// loaders
+const passport = require('./passport');
 // env config
 dotenv.config();
 
@@ -63,13 +65,20 @@ module.exports = {
     server.use(express.json());
     // server.use(cookieParser(process.env.MONGO_NAME));
 
-    // routes
-    routes(server);
+    if (process.env.USE_PASSPORT) {
+      // create/initialize passport strategies
+      passport.create();
+      passport.start(server);
+    }
 
     // response definition
     server.use(responseDefinition);
     // error handler
     server.use(errorHandler);
+
+    // routes
+    routes.create(server);
+
     // catch 404 and forward to error handler
     server.use((req, res) => res.failure(-1, 'not found', 404));
 
