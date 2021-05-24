@@ -27,8 +27,6 @@ module.exports = {
    * @returns new user
    */
   async create({ password, ...data }) {
-    data.password = bcrypt.hashSync(data.password, 10);
-
     const user = await new users({
       createdAt: new Date(),
       password: bcrypt.hashSync(password, bcrypt.genSaltSync(10), null),
