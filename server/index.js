@@ -1,24 +1,19 @@
-'use strict';
+// 'use strict';
 
 const {
   database,
   server,
-  errorHandler,
-  passport
+  errorHandler
 } = require('./loaders');
 
 (async () => {
-  // create/init server
+  // create db
+  await database.start();
+
+  // create/initialize server
   const app = server.create();
   await server.start(app);
 
-  // init db
-  await database.start();
-
-  // init passport strategies
-  passport.create();
-  passport.start(app);
-
-  // init error handler
+  // create error handler
   errorHandler.create();
 })();
