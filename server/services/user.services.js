@@ -75,7 +75,7 @@ module.exports = {
    * @returns boolean
    */
   async changePassword(id, oldPassword, newPassword) {
-    const user = await users.findById(id).lean().exec();
+    const user = await users.findById(id).exec();
 
     if (!user) {
       throw new Error('user not found');
