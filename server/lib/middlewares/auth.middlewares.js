@@ -6,17 +6,15 @@ module.exports = {
     passport.authenticate('jwt', { session: false }, (err, user, info) => {
       if (!!err) {
         return res.failure(-1, err, 500)
-      }
-  
-      if (!user) {
+      } else if (!user) {
         return res.failure(-1, info.message, 500);
       }
-  
-      req.logIn(user, function (err) {
+
+      req.logIn(user, (err) => {
         if (!!err) {
           return next(err)
         };
-  
+
         return next();
       });
     })(req, res, next);
@@ -30,7 +28,7 @@ module.exports = {
         return res.failure(-1, info.error, 500);
       }
   
-      req.logIn(user, function (err) {
+      req.logIn(user, (err) => {
         if (!!err) {
           return next(err);
         }

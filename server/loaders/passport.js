@@ -27,7 +27,7 @@ module.exports = {
       secretOrKey: process.env.JWT_SECRET
     }, async (jwt_payload, done) => {
       if (await users.getById(jwt_payload.sub)) {
-        done(null, jwt_payload);
+        return done(null, jwt_payload);
       }
 
       return done(null, false);
@@ -41,5 +41,6 @@ module.exports = {
 
   start(server) {
     server.use(passport.initialize());
+    return true;
   }
 }
