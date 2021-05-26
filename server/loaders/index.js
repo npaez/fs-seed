@@ -1,12 +1,7 @@
 /* jshint esversion: 6 */
-const server = require('./server');
-const database = require('./mongodb');
-const errorHandler = require('./errorHandler');
-const passport = require('./passport');
-
 module.exports = {
-  server,
-  database,
-  errorHandler,
-  passport
-}
+  server: require('./server.loader'),
+  database: require('./mongodb.loader'),
+  errorHandler: require('./errorHandler.loader'),
+  passport: require('./passport.loader')
+};

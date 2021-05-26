@@ -1,4 +1,3 @@
-/* jshint esversion: 6 */
 // modules
 const mongoose = require('mongoose');
 // models
@@ -23,4 +22,4 @@ module.exports = {
 
     return console.log(`[+] connected to mongodb - database: ${ process.env.MONGO_NAME }`);
   }
-}
+};

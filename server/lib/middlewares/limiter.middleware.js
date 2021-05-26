@@ -1,3 +1,4 @@
+// modules
 const { RateLimiter } = require('limiter');
 const limiter = new RateLimiter(10, 'second', true);
 
@@ -13,4 +14,4 @@ module.exports = {
       return next();
     });
   }
-}
+};

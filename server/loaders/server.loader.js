@@ -1,5 +1,3 @@
-/* jshint esversion: 6 */
-
 // modules
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
@@ -11,7 +9,7 @@ const logger = require('morgan');
 // routes
 const routes = require('../routes/index');
 // loaders
-const passport = require('./passport');
+const passport = require('./passport.loader');
 // env config
 dotenv.config();
 
@@ -36,7 +34,7 @@ const responseDefinition = (req, res, next) => {
   };
 
   return next();
-}
+};
 
 const errorHandler = (err, req, res, next) => {
   // development error handler print stacktrace
@@ -45,7 +43,7 @@ const errorHandler = (err, req, res, next) => {
     error: (process.env.NODE_ENV === 'development') ? err : {},
     message: err.message || 'Unknown Error'
   });
-}
+};
 
 module.exports = {
   create() {
@@ -91,4 +89,4 @@ module.exports = {
     await http.createServer(server).listen(process.env.PORT);
     return console.log(`[+] ${ process.env.NAME } server listening on port ${ process.env.PORT }`);
   }
-}
+};

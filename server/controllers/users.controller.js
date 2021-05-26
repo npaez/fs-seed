@@ -1,3 +1,4 @@
+// services
 const { users } = require('../services');
 
 /**
@@ -50,7 +51,7 @@ exports.createUser = async (req, res) => {
   }
 
   return res.success(user, 200);
-}
+};
 
 /**
  * user update own profile
@@ -69,7 +70,7 @@ exports.updateProfile = async (req, res) => {
   }
 
   return res.success(user, 200);
-}
+};
 
 /**
  * user updates own password
@@ -88,4 +89,4 @@ exports.updatePassword = async (req, res) => {
   }
 
   return res.success(success, 200);
-}
+};

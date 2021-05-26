@@ -1,5 +1,5 @@
-// const users = require('../services/user.services');
-const jwt = require('../lib/utils/jwt.utils');
+// libs
+const jwt = require('../lib/utils/jwt.util');
 
 module.exports = {
   async localAuth(req, res) {

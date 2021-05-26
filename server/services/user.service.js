@@ -1,9 +1,8 @@
 // modules
-const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 // models
-const users = require('../models/users.model')// mongoose.model('users');
+const users = require('../models/users.model');
 
 module.exports = {
   /**

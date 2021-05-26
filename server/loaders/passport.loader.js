@@ -43,4 +43,4 @@ module.exports = {
     server.use(passport.initialize());
     return true;
   }
-}
+};

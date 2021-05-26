@@ -1,10 +1,8 @@
-/* jshint esversion: 6 */
-
 // controller
-const ctrl = require('../controllers/users.controller');
+const { users: ctrl } = require('../controllers');
 
 // middlewares
-const { rateLimiter } = require('../lib/middlewares/limiter.middlewares');
+const { rateLimiter } = require('../lib/middlewares/limiter.middleware');
 
 module.exports = (application) => {
   application
@@ -19,4 +17,4 @@ module.exports = (application) => {
   application
   .route('/api/me/password')
   .put(rateLimiter, ctrl.updatePassword)
-}
+};
