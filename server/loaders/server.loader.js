@@ -1,6 +1,5 @@
 // modules
 const compression = require('compression');
-const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 const express = require('express');
 const helmet = require('helmet');
@@ -61,7 +60,6 @@ module.exports = {
     // server.use(favicon(`${ __dirname }/public/img/favicon.png`));
     server.use(express.urlencoded({ extended: false }));
     server.use(express.json());
-    // server.use(cookieParser(process.env.MONGO_NAME));
 
     if (process.env.USE_PASSPORT) {
       // create/initialize passport strategies
