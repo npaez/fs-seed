@@ -1,5 +1,5 @@
 // controller
-const { testing: ctrl } = require('../controllers');
+const { testing } = require('../controllers');
 
 // middlewares
 const { rateLimiter } = require('../lib/middlewares/limiter.middleware');
@@ -8,9 +8,9 @@ const { jwtAuth } = require('../lib/middlewares/auth.middleware');
 module.exports = (application) => {
   application
   .route('/')
-  .get(rateLimiter, ctrl.home)
+  .get(rateLimiter, testing.home)
 
   application
   .route('/private')
-  .get(rateLimiter, jwtAuth, ctrl.homePrivate)
+  .get(rateLimiter, jwtAuth, testing.homePrivate)
 };

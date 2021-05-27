@@ -1,5 +1,5 @@
 // controller
-const { users: ctrl } = require('../controllers');
+const { users } = require('../controllers');
 
 // middlewares
 const { rateLimiter } = require('../lib/middlewares/limiter.middleware');
@@ -7,14 +7,14 @@ const { rateLimiter } = require('../lib/middlewares/limiter.middleware');
 module.exports = (application) => {
   application
   .route('/api/users')
-  .get(rateLimiter, ctrl.getUsers)
-  .post(rateLimiter, ctrl.createUser)
+  .get(rateLimiter, users.getUsers)
+  .post(rateLimiter, users.createUser)
 
   application
   .route('/api/me/profile')
-  .put(rateLimiter, ctrl.updateProfile)
+  .put(rateLimiter, users.updateProfile)
 
   application
   .route('/api/me/password')
-  .put(rateLimiter, ctrl.updatePassword)
+  .put(rateLimiter, users.updatePassword)
 };
