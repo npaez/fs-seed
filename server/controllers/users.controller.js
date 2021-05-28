@@ -31,7 +31,7 @@ exports.getUsers = async (req, res) => {
     return res.failure(-1, ex.message, 500);
   }
 
-  return res.sccess(all, 200);
+  return res.success(all, 200);
 };
 
 /**
