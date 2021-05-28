@@ -1,13 +1,9 @@
 // modules
 const mongoose = require('mongoose');
-// models
-const models = require('../models');
 
 module.exports = {
   // connect database
   async start() {
-    models.create();
-
     try {
       await mongoose.connect(process.env.MONGO_URI, {
         useNewUrlParser: true,
