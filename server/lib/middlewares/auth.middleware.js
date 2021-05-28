@@ -36,5 +36,15 @@ module.exports = {
         return next();
       });
     })(req, res, next);
+  },
+
+  adminAccess(req, res, next) {
+    const { role } = req.user;
+
+    if (role !== 'admin') {
+      return res.failure(-1, 'admin access needed', 403)
+    }
+
+    return next();
   }
 };
