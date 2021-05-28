@@ -1,5 +1,8 @@
 // services
-const { users } = require('../services');
+const {
+  users,
+  admins
+} = require('../services');
 
 /**
  * query users
@@ -25,7 +28,7 @@ exports.getUsers = async (req, res) => {
 
   // query all users
   try {
-    all = await users.getAll();
+    all = await admins.getAllUsers();
   } catch (ex) {
     console.log('[GET /api/users getUsers() 2] ', ex.message);
     return res.failure(-1, ex.message, 500);

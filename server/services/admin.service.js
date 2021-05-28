@@ -6,7 +6,7 @@ module.exports = {
    * @param { String } lean
    * @returns users recordset
    */
-  async getAll(lean = true) {
+  async getAllUsers(lean = true) {
     return await users.find().lean(lean).exec();
   },
 
