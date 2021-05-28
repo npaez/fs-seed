@@ -54,6 +54,22 @@ exports.createUser = async (req, res) => {
 };
 
 /**
+ * get own profile info
+ * @route GET /api/me/profile
+ */
+exports.getProfile = async (req, res) => {
+  const { _id: id } = req.user;
+
+  try {
+    const user = await users.getById(id);
+    return res.success(user, 200);
+  } catch (ex) {
+    console.log('[GET /api/me/profile] ', ex.message);
+    return res.failure(-1, ex.message, 500);
+  }
+}
+
+/**
  * user update own profile
  * @route PUT /api/me/profile
  */
