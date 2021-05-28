@@ -7,40 +7,45 @@ const { users } = require('../models');
 module.exports = {
   /**
    * @param { String } id
+   * @param { String } lean
    * @returns user object
    */
-  async getById(id, lean) {
-    return await users.findById(id).lean(lean).exec();
+  async getById(id, lean = true) {
+    try {
+      return await users.findById(id).lean(lean).exec();
+    } catch (ex) {
+      throw new Error(ex.message);
+    }
   },
 
   /**
-   * @param { Object } query 
+   * @param { Object } query
+   * @param { String } lean
    * @returns user object
    */
-  async getByField(query, lean) {
-    return await users.findOne(query).lean(lean).exec();
+  async getByField(query, lean = true) {
+    try {
+      return await users.findOne(query).lean(lean).exec();
+    } catch (ex) {
+      throw new Error(ex.message);
+    }
   },
 
   /**
-   * @returns users recordset
-   */
-  async getAll() {
-    return await users.find().lean().exec();
-  },
-
-  /**
-   * @param { Object } data
    * @param { String } password
+   * @param { Object } data
    * @returns new user
    */
   async create({ password, ...data }) {
-    const user = await new users({
-      createdAt: new Date(),
-      password: bcrypt.hashSync(password, bcrypt.genSaltSync(10), null),
-      ...data,
-    }).save();
-
-    return user;
+    try {
+      return await new users({
+        createdAt: new Date(),
+        password: bcrypt.hashSync(password, bcrypt.genSaltSync(10), null),
+        ...data,
+      }).save();
+    } catch (ex) {
+      throw new Error(ex.message);
+    }
   },
 
   /**
@@ -64,15 +69,11 @@ module.exports = {
       new: true
     }
 
-    let user = null;
-
     try {
-      user = await users.findOneAndUpdate(query, update, extra);
+      return await users.findOneAndUpdate(query, update, extra);
     } catch (ex) {
       throw new Error(ex.message);
     }
-
-    return user;
   },
 
   /**
@@ -94,10 +95,10 @@ module.exports = {
 
     try {
       await user.save();
+
+      return true;
     } catch (ex) {
       throw new Error(ex.message);
     }
-
-    return true;
   }
 }
