@@ -2,7 +2,7 @@
 const bcrypt = require('bcryptjs');
 
 // models
-const users = require('../models/users.model');
+const { users } = require('../models');
 
 module.exports = {
   /**
