@@ -5,6 +5,7 @@ const express = require('express');
 const helmet = require('helmet');
 const http = require('http');
 const logger = require('morgan');
+const mongoSanitize = require('express-mongo-sanitize');
 // routes
 const routes = require('../routes/index');
 // loaders
@@ -60,6 +61,8 @@ module.exports = {
     // server.use(favicon(`${ __dirname }/public/img/favicon.png`));
     server.use(express.urlencoded({ extended: false }));
     server.use(express.json());
+    // sanitize user-supplied data
+    server.use(mongoSanitize({ replaceWith: '_' }));
 
     if (process.env.USE_PASSPORT) {
       // create/initialize passport strategies
