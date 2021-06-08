@@ -5,14 +5,14 @@ module.exports = {
   jwtAuth(req, res, next) {
     passport.authenticate('jwt', { session: false }, (err, user, info) => {
       if (!!err) {
-        return res.failure(-1, err, 500)
+        return res.failure(-1, err, 500);
       } else if (!user) {
         return res.failure(-1, info.message, 500);
       }
 
       req.logIn(user, (err) => {
         if (!!err) {
-          return next(err)
+          return next(err);
         };
 
         return next();
@@ -23,7 +23,7 @@ module.exports = {
   localAuth(req, res, next) {
     passport.authenticate('local', { session: false }, (err, user, info) => {
       if (!!err) {
-        return res.failure(-1, err, 500)
+        return res.failure(-1, err, 500);
       } else if (!user) {
         return res.failure(-1, info.error, 500);
       }
@@ -42,7 +42,7 @@ module.exports = {
     const { role } = req.user;
 
     if (role !== 'admin') {
-      return res.failure(-1, 'admin access needed', 403)
+      return res.failure(-1, 'admin access needed', 403);
     }
 
     return next();
