@@ -1,5 +1,5 @@
 // modules
-const bcrypt = require('bcryptjs');
+const { compareSync } = require('bcryptjs');
 
 // models
 const { users } = require('../models');
@@ -36,13 +36,11 @@ module.exports = {
    * @param { Object } data
    * @returns new user
    */
-  async create({ password, ...data }) {
+  async create(data) {
     try {
-      return await new users({
-        createdAt: new Date(),
-        password: bcrypt.hashSync(password, bcrypt.genSaltSync(10), null),
-        ...data,
-      }).save();
+      const options = { caller: 'CREATE_HOOK' };
+
+      return await new users(data).save(options);
     } catch (ex) {
       throw new Error(ex.message);
     }
@@ -82,23 +80,24 @@ module.exports = {
    * @param { String } newPassword
    * @returns boolean
    */
-  async changePassword(id, oldPassword, newPassword) {
+  async updatePassword(id, oldPassword, newPassword) {
     const user = await users.findById(id).exec();
 
     if (!user) {
       throw new Error('user not found');
-    } else if (!bcrypt.compareSync(oldPassword, user.password)) {
+    } else if (!compareSync(oldPassword, user.password)) {
       throw new Error('incorrect password');
     }
 
-    user.password = bcrypt.hashSync(newPassword, bcrypt.genSaltSync(10), null);
-
     try {
-      await user.save();
+      const options = { caller: 'UPDATE_HOOK' };
 
-      return true;
+      user.password = newPassword;
+      await user.save(options);
     } catch (ex) {
       throw new Error(ex.message);
     }
+
+    return true;
   }
 }

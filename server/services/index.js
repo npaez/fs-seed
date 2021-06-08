@@ -1,4 +1,4 @@
 module.exports = {
-  admins: require('./admin.service'),
-  users: require('./user.service')
+  admins: require('./admins.service'),
+  users: require('./users.service')
 };
