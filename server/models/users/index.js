@@ -1,8 +1,15 @@
 // modules
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
-const bcrypt = require('bcryptjs');
 
+// callbacks/methods
+const {
+  handleHashPassword,
+  handleSchemaValidation,
+  handleComparePassword
+} = require('./users.aux');
+
+// schema definition
 const userSchema = new mongoose.Schema({
   // system usage
   createdAt: {
@@ -43,7 +50,7 @@ const userSchema = new mongoose.Schema({
 
   role: {
     type: String,
-    enum : [ 'user', 'admin' ],
+    enum: [ 'user', 'admin' ],
     default: 'user'
   },
 
@@ -58,31 +65,14 @@ const userSchema = new mongoose.Schema({
 userSchema.plugin(uniqueValidator);
 
 // methods
-userSchema.methods.comparePassword = function (password) {
-  return bcrypt.compareSync(password, this.password);
-};
+userSchema.methods.comparePassword = handleComparePassword;
+
+// pre processing
+userSchema.pre('save', handleHashPassword);
+userSchema.pre('updateOne', handleHashPassword);
 
 // post processing
-userSchema.post('save', schemaValidation);
-userSchema.post('updateOne', schemaValidation);
-
-// aux functions
-function schemaValidation(error, doc, next) {
-  switch (error.name) {
-    case 'ValidationError': {
-      const errors = Object.keys(error.errors).map((key) => {
-        return error.errors[key].message;
-      });
-
-      next(new Error(errors.join('. ')));
-      break;
-    }
-
-    default: {
-      next(error);
-      break;
-    }
-  }
-}
+userSchema.post('save', handleSchemaValidation);
+userSchema.post('updateOne', handleSchemaValidation);
 
 module.exports = mongoose.model('users', userSchema);
