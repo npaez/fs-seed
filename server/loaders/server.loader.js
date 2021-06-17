@@ -1,5 +1,6 @@
 // modules
 const compression = require('compression');
+const cors = require('cors');
 const dotenv = require('dotenv');
 const express = require('express');
 const helmet = require('helmet');
@@ -68,6 +69,10 @@ module.exports = {
       // create/initialize passport strategies
       passport.create();
       passport.start(server);
+    }
+
+    if (process.env.USE_CORS) {
+      server.use(cors());
     }
 
     // response definition
