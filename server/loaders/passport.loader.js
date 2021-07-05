@@ -14,7 +14,7 @@ module.exports = {
     }, async (username, password, done) => {
       const user = await users.getByField({ email: username }, false);
 
-      if (!user || !user.comparePassword(password)) {
+      if (!user || !await user.comparePassword(password)) {
         return done(null, false, { error: 'wrong email or password'});
       }
 
