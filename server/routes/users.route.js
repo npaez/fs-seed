@@ -1,3 +1,6 @@
+// modules
+const router = require('express').Router();
+
 // controller
 const { users } = require('../controllers');
 
@@ -5,20 +8,13 @@ const { users } = require('../controllers');
 const { rateLimiter } = require('../lib/middlewares/limiter.middleware');
 const { adminAccess, jwtAuth } = require('../lib/middlewares/auth.middleware');
 
-module.exports = (application) => {
-  // admin routes
-  application
-  .route('/api/users')
-  .get(rateLimiter, adminAccess, users.getUsers)
-  .post(rateLimiter, adminAccess, users.createUser)
+// routing
+router.get('/users', rateLimiter, adminAccess, users.getUsers);
+router.post('/users', rateLimiter, adminAccess, users.createUser);
 
-  // user routes
-  application
-  .route('/api/me/profile')
-  .get(rateLimiter, jwtAuth, users.getProfile)
-  .put(rateLimiter, jwtAuth, users.updateProfile)
+router.get('/me/profile', rateLimiter, jwtAuth, users.getProfile);
+router.put('/me/profile', rateLimiter, jwtAuth, users.updateProfile);
 
-  application
-  .route('/api/me/password')
-  .put(rateLimiter, jwtAuth, users.updatePassword)
-};
+router.put('/me/password', rateLimiter, jwtAuth, users.updatePassword);
+
+module.exports = router;

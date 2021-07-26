@@ -81,7 +81,7 @@ module.exports = {
     server.use(errorHandler);
 
     // routes
-    routes.create(server);
+    routes.initialize(server);
 
     // catch 404 and forward to error handler
     server.use((req, res) => res.failure(-1, 'not found', 404));

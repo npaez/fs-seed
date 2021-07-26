@@ -1,3 +1,6 @@
+// modules
+const router = require('express').Router();
+
 // controller
 const { auth } = require('../controllers');
 
@@ -5,8 +8,7 @@ const { auth } = require('../controllers');
 const { localAuth } = require('../lib/middlewares/auth.middleware');
 const { rateLimiter } = require('../lib/middlewares/limiter.middleware');
 
-module.exports = (application) => {
-  application
-  .route('/auth/login')
-  .post(rateLimiter, localAuth, auth.localAuth)
-};
+// routing /auth
+router.post('/login', rateLimiter, localAuth, auth.localAuth);
+
+module.exports = router;

@@ -1,3 +1,6 @@
+// modules
+const router = require('express').Router();
+
 // controller
 const { testing } = require('../controllers');
 
@@ -5,12 +8,8 @@ const { testing } = require('../controllers');
 const { rateLimiter } = require('../lib/middlewares/limiter.middleware');
 const { jwtAuth } = require('../lib/middlewares/auth.middleware');
 
-module.exports = (application) => {
-  application
-  .route('/')
-  .get(rateLimiter, testing.home)
+// routing /
+router.get('/', rateLimiter, testing.home);
+router.get('/private', rateLimiter, jwtAuth, testing.homePrivate);
 
-  application
-  .route('/private')
-  .get(rateLimiter, jwtAuth, testing.homePrivate)
-};
+module.exports = router;

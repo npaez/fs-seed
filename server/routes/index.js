@@ -1,9 +1,11 @@
 module.exports = {
-  create(application) {
+  initialize(server) {
     // core routes
-    require('./users.route')(application)
-    require('./auth.route')(application)
+    server.use('/auth', require('./auth.route'));
+    server.use('/api', require('./users.route'));
     // testing route
-    require('./testing.route')(application)
+    server.use('/', require('./testing.route'));
+
+    return true;
   }
 };
