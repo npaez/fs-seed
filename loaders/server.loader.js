@@ -9,10 +9,10 @@ import logger from 'morgan';
 import mongoSanitize from 'express-mongo-sanitize';
 
 // routes
-import * as routes from '../routes';
+import routes from '../routes';
 
 // loaders
-import * as passport from './passport.loader';
+import passport from './passport.loader';
 
 // env config
 dotenv.config();
