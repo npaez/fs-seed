@@ -3,7 +3,8 @@ import testing from './testing.route';
 import users from './users.route';
 import frontend from './frontend.route';
 
-export const initialize = (server) => {
+// methods
+const initialize = (server) => {
   // core routes
   server.use('/auth', auth);
   server.use('/api', users);
@@ -15,4 +16,9 @@ export const initialize = (server) => {
   server.use('/', frontend);
 
   return true;
+};
+
+// export module
+export default {
+  initialize
 };
