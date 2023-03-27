@@ -12,7 +12,7 @@ export const initialize = (server) => {
   server.use('/test', testing);
 
   // client route
-  server.use('/test', frontend);
+  server.use('/', frontend);
 
   return true;
 };
