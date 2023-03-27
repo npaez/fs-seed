@@ -1,7 +1,7 @@
 'use strict';
 
 require('@babel/register')({
-	presets: [
+  presets: [
     '@babel/preset-env'
   ]
 });
