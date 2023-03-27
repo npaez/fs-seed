@@ -15,8 +15,7 @@ import {
   users
 } from '../services';
 
-// exports
-export const create = () => {
+const create = () => {
   // local strategy
   passport.use(new LocalStrategy({
     usernameField: 'email'
@@ -48,7 +47,13 @@ export const create = () => {
   return true;
 };
 
-export const start = (server) => {
+const start = (server) => {
   server.use(passport.initialize());
   return true;
+};
+
+// export module
+export default {
+  create,
+  start
 };

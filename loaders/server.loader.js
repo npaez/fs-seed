@@ -17,6 +17,7 @@ import * as passport from './passport.loader';
 // env config
 dotenv.config();
 
+// aux functions
 const responseDefinition = (req, res, next) => {
   res.success = (data = null, status = 200) => {
     return res.status(status).send({
@@ -49,7 +50,8 @@ const errorHandler = (err, req, res, next) => {
   });
 };
 
-export const create = () => {
+// methods
+const create = () => {
   // create express app
   const server = express();
 
@@ -91,10 +93,16 @@ export const create = () => {
   return server;
 };
 
-export const start = async (server) => {
+const start = async (server) => {
   server.set('port', process.env.PORT); // firing up express
 
   await http.createServer(server).listen(process.env.PORT);
 
   return console.log(`[+] ${ process.env.NAME } server listening on port ${ process.env.PORT }`);
+};
+
+// export module
+export default {
+  create,
+  start
 };

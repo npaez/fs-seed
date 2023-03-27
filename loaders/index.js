@@ -1,5 +1,5 @@
 /* jshint esversion: 6 */
-export * as server from './server.loader';
-export * as database from './mongodb.loader';
-export * as errorHandler from './errorHandler.loader';
-export * as passport from './passport.loader';
+export { default as server } from './server.loader';
+export { default as database } from './mongodb.loader';
+export { default as errorHandler } from './errorHandler.loader';
+export { default as passport } from './passport.loader';

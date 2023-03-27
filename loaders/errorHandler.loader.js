@@ -1,7 +1,7 @@
 // modules
 import fs from 'fs';
 
-export const create = () => {
+const create = () => {
   // create logs folder
   if (!fs.existsSync('./logs')) {
     console.log('[+] logs folder created');
@@ -22,4 +22,9 @@ export const create = () => {
 
     return;
   });
+};
+
+// export module
+export default {
+  create
 };
