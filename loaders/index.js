@@ -1,7 +1,5 @@
 /* jshint esversion: 6 */
-module.exports = {
-  server: require('./server.loader'),
-  database: require('./mongodb.loader'),
-  errorHandler: require('./errorHandler.loader'),
-  passport: require('./passport.loader')
-};
+export * as server from './server.loader';
+export * as database from './mongodb.loader';
+export * as errorHandler from './errorHandler.loader';
+export * as passport from './passport.loader';
