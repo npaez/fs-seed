@@ -1,4 +1,4 @@
-export * as auth from './auth.controller';
-export * as users from './users.controller';
-export * as testing from './testing.controller';
-export * as frontend from './frontend.controller';
+export { default as auth } from './auth.controller';
+export { default as users } from './users.controller';
+export { default as testing } from './testing.controller';
+export { default as frontend } from './frontend.controller';

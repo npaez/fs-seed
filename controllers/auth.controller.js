@@ -3,7 +3,7 @@ import {
   jwt
 } from '../lib/utils/jwt.util';
 
-export const localAuth = async (req, res) => {
+const localAuth = async (req, res) => {
   let token = null;
 
   try {
@@ -15,4 +15,9 @@ export const localAuth = async (req, res) => {
   };
 
   return res.success(token, 200);
+};
+
+// export module
+export default {
+  localAuth
 };

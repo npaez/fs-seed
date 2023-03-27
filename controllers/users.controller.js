@@ -8,7 +8,7 @@ import {
  * query users
  * @route GET /api/users
  */
-export const getUsers = async (req, res) => {
+const getUsers = async (req, res) => {
   const {
     id
   } = req.query;
@@ -42,7 +42,7 @@ export const getUsers = async (req, res) => {
  * create user
  * @route POST /api/users
  */
-export const createUser = async (req, res) => {
+const createUser = async (req, res) => {
   try {
     const user = await users.create(req.body);
 
@@ -58,7 +58,7 @@ export const createUser = async (req, res) => {
  * get own profile info
  * @route GET /api/me/profile
  */
-export const getProfile = async (req, res) => {
+const getProfile = async (req, res) => {
   try {
     const user = await users.getById(req.user.sub);
 
@@ -74,7 +74,7 @@ export const getProfile = async (req, res) => {
  * user update own profile
  * @route PUT /api/me/profile
  */
-export const updateProfile = async (req, res) => {
+const updateProfile = async (req, res) => {
   try {
     const user = await users.updateProfile(
       req.user.sub,
@@ -93,7 +93,7 @@ export const updateProfile = async (req, res) => {
  * user updates own password
  * @route PUT /api/me/password
  */
-export const updatePassword = async (req, res) => {
+const updatePassword = async (req, res) => {
   try {
     const success = await users.updatePassword(
       req.user.sub,
@@ -107,4 +107,13 @@ export const updatePassword = async (req, res) => {
 
     return res.failure(-1, ex.message, 500);
   };
+};
+
+// module export
+export default {
+  getUsers,
+  createUser,
+  getProfile,
+  updateProfile,
+  updatePassword
 };
