@@ -50,7 +50,7 @@ const handleComparePassword = async function (password) {
 };
 
 // export module
-export default {
+export {
   handleSchemaValidation,
   handleHashPassword,
   handleComparePassword
