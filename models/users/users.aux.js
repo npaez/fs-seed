@@ -1,5 +1,5 @@
 // modules
-const bcrypt = require('bcryptjs');
+import bcrypt from 'bcryptjs';
 
 // const
 const HANDLE_CALLER = {
@@ -12,7 +12,7 @@ const HANDLE_CALLER = {
   }
 }
 
-exports.handleSchemaValidation = (error, doc, next) => {
+export const handleSchemaValidation = (error, doc, next) => {
   switch (error.name) {
     case 'ValidationError': {
       const errors = Object.keys(error.errors).map((key) => {
@@ -30,17 +30,20 @@ exports.handleSchemaValidation = (error, doc, next) => {
   }
 };
 
-exports.handleHashPassword = async function (next, options) {
-  const { caller } = options;
-
+export const handleHashPassword = async function (next, options) {
   this.set({
-    password: await bcrypt.hash(this.password, bcrypt.genSaltSync(10), null),
-    ...HANDLE_CALLER[caller]
+    password: await bcrypt.hash(
+      this.password,
+      bcrypt.genSaltSync(10),
+      null
+    ),
+
+    ...HANDLE_CALLER[options.caller]
   });
 
   return next();
 };
 
-exports.handleComparePassword = async function (password) {
+export const handleComparePassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };

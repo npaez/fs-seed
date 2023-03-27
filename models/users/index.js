@@ -1,13 +1,13 @@
 // modules
-const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
+import mongoose from 'mongoose';
+import uniqueValidator from 'mongoose-unique-validator';
 
 // callbacks/methods
-const {
+import {
   handleHashPassword,
   handleSchemaValidation,
   handleComparePassword
-} = require('./users.aux');
+} from './users.aux';
 
 // schema definition
 const userSchema = new mongoose.Schema({
@@ -75,4 +75,4 @@ userSchema.pre('updateOne', handleHashPassword);
 userSchema.post('save', handleSchemaValidation);
 userSchema.post('updateOne', handleSchemaValidation);
 
-module.exports = mongoose.model('users', userSchema);
+export const users = mongoose.model('users', userSchema);
