@@ -75,4 +75,4 @@ userSchema.pre('updateOne', handleHashPassword);
 userSchema.post('save', handleSchemaValidation);
 userSchema.post('updateOne', handleSchemaValidation);
 
-export const users = mongoose.model('users', userSchema);
+export default mongoose.model('users', userSchema);

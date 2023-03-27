@@ -12,7 +12,8 @@ const HANDLE_CALLER = {
   }
 }
 
-export const handleSchemaValidation = (error, doc, next) => {
+// methods
+const handleSchemaValidation = (error, doc, next) => {
   switch (error.name) {
     case 'ValidationError': {
       const errors = Object.keys(error.errors).map((key) => {
@@ -30,7 +31,7 @@ export const handleSchemaValidation = (error, doc, next) => {
   }
 };
 
-export const handleHashPassword = async function (next, options) {
+const handleHashPassword = async function (next, options) {
   this.set({
     password: await bcrypt.hash(
       this.password,
@@ -44,6 +45,13 @@ export const handleHashPassword = async function (next, options) {
   return next();
 };
 
-export const handleComparePassword = async function (password) {
+const handleComparePassword = async function (password) {
   return await bcrypt.compare(password, this.password);
+};
+
+// export module
+export default {
+  handleSchemaValidation,
+  handleHashPassword,
+  handleComparePassword
 };
