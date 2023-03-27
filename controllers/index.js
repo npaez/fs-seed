@@ -1,6 +1,4 @@
 /* jshint esversion: 6 */
-module.exports = {
-  auth: require('./auth.controller'),
-  users: require('./users.controller'),
-  testing: require('./testing.controller')
-};
+export * as auth from  './auth.controller';
+export * as users from  './users.controller';
+export * as testing from  './testing.controller';
