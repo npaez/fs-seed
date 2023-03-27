@@ -1,15 +1,26 @@
 // modules
-const router = require('express').Router();
+import {
+  Router
+} from 'express';
 
 // controller
-const { testing } = require('../controllers');
+import {
+  testing
+} from '../controllers';
 
 // middlewares
-const { rateLimiter } = require('../lib/middlewares/limiter.middleware');
-const { jwtAuth } = require('../lib/middlewares/auth.middleware');
+import {
+  rateLimiter
+} from '../lib/middlewares/limiter.middleware';
+
+import {
+  jwtAuth
+} from '../lib/middlewares/auth.middleware';
 
 // routing /
+const router = Router();
 router.get('/', rateLimiter, testing.home);
 router.get('/private', rateLimiter, jwtAuth, testing.homePrivate);
 
-module.exports = router;
+// export
+export default router;

@@ -1,11 +1,13 @@
-module.exports = {
-  initialize(server) {
-    // core routes
-    server.use('/auth', require('./auth.route'));
-    server.use('/api', require('./users.route'));
-    // testing route
-    server.use('/', require('./testing.route'));
+import auth from './auth.route';
+import testing from './testing.route';
+import users from './users.route';
 
-    return true;
-  }
+export const initialize = (server) => {
+  // core routes
+  server.use('/auth', auth);
+  server.use('/api', users);
+  // testing route
+  server.use('/', testing);
+
+  return true;
 };

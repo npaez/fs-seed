@@ -1,14 +1,25 @@
 // modules
-const router = require('express').Router();
+import {
+  Router
+} from 'express';
 
 // controller
-const { auth } = require('../controllers');
+import {
+  auth
+} from '../controllers';
 
 // middlewares
-const { localAuth } = require('../lib/middlewares/auth.middleware');
-const { rateLimiter } = require('../lib/middlewares/limiter.middleware');
+import {
+  localAuth
+} from '../lib/middlewares/auth.middleware';
+
+import {
+  rateLimiter
+} from '../lib/middlewares/limiter.middleware';
 
 // routing /auth
+const router = Router();
 router.post('/login', rateLimiter, localAuth, auth.localAuth);
 
-module.exports = router;
+// export
+export default router;
