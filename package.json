@@ -43,5 +43,11 @@
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0"
-  }
+  },
+	"devDependencies": {
+		"@babel/core": "^7.8.4",
+		"@babel/preset-env": "^7.8.4",
+		"@babel/register": "^7.8.3",
+		"prettierrc": "0.0.0-5"
+	}
 }
