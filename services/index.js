@@ -1,4 +1,2 @@
-module.exports = {
-  admins: require('./admins.service'),
-  users: require('./users.service')
-};
+export * as admins from './admins.service';
+export * as users from './users.service';
