@@ -13,7 +13,7 @@ import {
  * @param { String } lean
  * @returns user object
  */
-export const getById = async (
+const getById = async (
   id,
   lean = true
 ) => {
@@ -32,7 +32,7 @@ export const getById = async (
  * @param { String } lean
  * @returns user object
  */
-export const getByField = async (
+const getByField = async (
   query,
   lean = true
 ) => {
@@ -51,7 +51,7 @@ export const getByField = async (
  * @param { Object } data
  * @returns new user
  */
-export const create = async (data) => {
+const create = async (data) => {
   try {
     const options = { caller: 'CREATE_HOOK' };
 
@@ -66,7 +66,7 @@ export const create = async (data) => {
  * @param { Object } data
  * @returns updated user profile
  */
-export const editProfile = async (
+const editProfile = async (
   id,
   data
 ) => {
@@ -104,7 +104,7 @@ export const editProfile = async (
  * @param { String } newPassword
  * @returns boolean
  */
-export const updatePassword = async (
+const updatePassword = async (
   id,
   oldPassword,
   newPassword
@@ -132,4 +132,13 @@ export const updatePassword = async (
   };
 
   return true;
+};
+
+// export module
+export default {
+  getById,
+  getByField,
+  create,
+  editProfile,
+  updatePassword
 };

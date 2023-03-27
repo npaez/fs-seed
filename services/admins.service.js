@@ -7,7 +7,7 @@ import {
  * @param { String } lean
  * @returns users recordset
  */
-export const getAllUsers = async (lean = true) => {
+const getAllUsers = async (lean = true) => {
   return await users
     .find()
     .lean(lean)
@@ -18,7 +18,7 @@ export const getAllUsers = async (lean = true) => {
  * @param { String } id
  * @returns boolean 
  */
-export const deleteUser = async (
+const deleteUser = async (
   id = null
 ) => {
   if (!id) {
@@ -42,4 +42,10 @@ export const deleteUser = async (
   };
 
   return true;
+};
+
+// export module
+export default {
+  getAllUsers,
+  deleteUser
 };
