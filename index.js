@@ -1,5 +1,11 @@
 'use strict';
 
+require('@babel/register')({
+	presets: [
+    '@babel/preset-env'
+  ]
+});
+
 const {
   database,
   server,
