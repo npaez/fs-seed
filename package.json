@@ -47,7 +47,6 @@
   "devDependencies": {
     "@babel/core": "^7.21.3",
     "@babel/preset-env": "^7.20.2",
-    "@babel/register": "^7.21.0",
-    "prettierrc": "0.0.0-5"
+    "@babel/register": "^7.21.0"
   }
 }
